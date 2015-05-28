@@ -155,61 +155,32 @@ function initialize() {
     map.mapTypes.set('map_style', styledMap);
     map.setMapTypeId('map_style');
 
-    // button effect to map new stuff
+    var lineCoordinates = [
+      new google.maps.LatLng(32.3078, -64.7505),
+      new google.maps.LatLng(40.712784, -74.005941)
+    ];
 
-    var from_loc = [];
-    var to_loc = [];
-
-    $('button').click(function(){
-        var from = $('#from').val();
-        var to = $('#to').val();
-
-        var url_from = "https://maps.googleapis.com/maps/api/geocode/json?address="+from+"&key=AIzaSyAIAT5ptZVJqiFiTQZxAXp6KT8jREfKidU";
-        var url_to = "https://maps.googleapis.com/maps/api/geocode/json?address="+to+"&key=AIzaSyAIAT5ptZVJqiFiTQZxAXp6KT8jREfKidU";
-
-        $.getJSON(url_from,function(data){
-            from_loc.push(data["results"][0]["geometry"]["location"]["lat"]);
-            from_loc.push(data["results"][0]["geometry"]["location"]["lng"]);
-        })
-
-        $.getJSON(url_to,function(data){
-            to_loc.push(data["results"][0]["geometry"]["location"]["lat"]);
-            to_loc.push(data["results"][0]["geometry"]["location"]["lng"]);
-        })
-
-        var lineCoordinates = [
-          new google.maps.LatLng(from_loc[0],from_loc[1]),
-          new google.maps.LatLng(to_loc[0],to_loc[1])
-        ];
-
-        var lineCoordinates = [
-            new google.maps.LatLng(from_loc[0],from_loc[1]),
-            new google.maps.LatLng(to_loc[0],to_loc[1])
-        ];
-
-        // Define the symbol, using one of the predefined paths ('CIRCLE')
-        // supplied by the Google Maps JavaScript API.
-        var lineSymbol = {
-          path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-          scale: 8,
-          strokeColor: '#fd7400'
-        };
+    // Define the symbol, using one of the predefined paths ('CIRCLE')
+    // supplied by the Google Maps JavaScript API.
+    var lineSymbol = {
+      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+      scale: 8,
+      strokeColor: '#fd7400'
+    };
 
 
 
-        // Create the polyline and add the symbol to it via the 'icons' property.
-        line = new google.maps.Polyline({
-          path: lineCoordinates,
-          icons: [{
-            icon: lineSymbol,
-            offset: '100%'
-          }],
-          map: map
-        });
-
-        animateCircle();
-
+    // Create the polyline and add the symbol to it via the 'icons' property.
+    line = new google.maps.Polyline({
+      path: lineCoordinates,
+      icons: [{
+        icon: lineSymbol,
+        offset: '100%'
+      }],
+      map: map
     });
+
+    animateCircle();
 }
 
 // // Use the DOM setInterval() function to change the offset of the symbol

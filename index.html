@@ -11,10 +11,26 @@
         padding: 0px
       }
     </style>
+    <link rel="stylesheet" href="map.css">
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="map.js"></script>
   </head>
   <body>
+    <div class="row" id="flight">
+      <h1>Dream Flights</h1>
+      <span>
+        <input class="swing" id="from" type="text" placeholder="Yikes" /><label for="artist">From</label>
+      </span>
+      <span>
+        <input class="swing" id="to" type="text" placeholder="You can do better" /><label for="song">To</label>
+      </span>
+      <!-- <span> -->
+        <section class="press">
+            <button>FLYYYYYY</button>
+        </section>
+      <!-- </span> -->
+    </div>
     <div id="map-canvas"></div>
   </body>
 </html>
